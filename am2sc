@@ -1,0 +1,6 @@
+#!/bin/zsh
+# Launcher: esegue am2sc.py con il Python del venv di scdl (che include la libreria soundcloud).
+SELF="${0:A}"
+SCDL="$(command -v scdl)" || { echo "scdl non trovato nel PATH" >&2; exit 1; }
+PY="$(head -1 "${SCDL:A}" | sed 's/^#!//')"
+exec "$PY" "${SELF:h}/am2sc.py" "$@"
